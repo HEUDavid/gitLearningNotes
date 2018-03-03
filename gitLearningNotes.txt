@@ -1,0 +1,34 @@
+Git命令学习笔记
+	Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上。
+	pwd显示当前目录
+	git init将这个目录变成Git可以管理的仓库
+	第一步将文件放到Git可以管理的文件目录下
+	git add <file>添加文件修改到暂存区
+	git commit
+	git commit -m "说明"把暂存区提交到当前分支master
+	git status
+版本回退
+	git log查看历史记录
+	git reset --hard HEAD^上一个版本
+	git reset --hard HEAD^^上上一个版本
+	git reset --hard HEAD~100上100个版本
+	git reset --hard 加上commit id的数字（前几位）
+	git reflog记录你的每一次命令
+	可以根据commit id回退到任何一个版本
+工作区与暂存区
+	工作区（Working Directory）就是所看到的目录
+	版本库（Repositor）就是.git
+	暂存区.git里包含了很多重要信息其中就有暂存区（stage）
+	git diff HEAD -- <file>查看当前版本库和工作区的区别
+撤销修改
+	git checkout -- <file>回到最近一次git commit或者git add
+删除操作
+	直接在文件管理器里删除或者rm <file>
+	然后看git status
+	git rm <file>
+	git commit
+	如果删错了，可以git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+远程仓库
+	Git与SVN
+	
+	
