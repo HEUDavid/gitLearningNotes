@@ -43,5 +43,8 @@ Git命令学习笔记
 		git clone git@github.com:HEUDavid/gitSkills.git
 		Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
 	分支管理
-	
+		每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。
+		当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上。以后的修改就在dev分支上。
+			创建分支
+				
 	
