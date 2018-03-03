@@ -30,5 +30,15 @@ Git命令学习笔记
 	如果删错了，可以git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
 远程仓库
 	Git与SVN
+	git push -u origin master
+		远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
+		本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+		由于远程库是空的，我们第一次推送master分支时，加上了-u参数，关联本地的master分支和远程的master分支，在以后的推送或者拉取时就可以简化命令。
+		git push origin master
+		以后这样：
+			git add <file>
+			git commit -m "desc"
+			git push origin master
+
 	
 	
