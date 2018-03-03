@@ -73,3 +73,25 @@ Git命令学习笔记
 			首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
 			干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；
 			你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
+	Bug分支
+		先保存工作现场
+			git stash
+			git status工作区是干净的
+		切换到出现Bug的分支（假定master）
+			git checkout master
+		从master分支创建临时分支
+			git checkout -b issue-101
+		修复后，切换到master分支，完成合并，删除issue-101分支
+		回到刚才的工作现场继续工作
+			git checkout dev
+			git status工作区依然是干净的
+			
+			git stash list
+			git stash apply
+			git stash drop
+			或者
+			git stash pop恢复的同时把stash内容也删了
+			
+			你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
+				git stash apply stash@{0}
+				这里的命令不会操作！！！
