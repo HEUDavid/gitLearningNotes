@@ -59,5 +59,8 @@ Git命令学习笔记
 				git branch -d dev
 			解决分支冲突
 				当Git无法自动合并分支时，就要手动解决。
+
 			实例：
 				这是master分支。
+			实例：
+				这是feature1分支。
