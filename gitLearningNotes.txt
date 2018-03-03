@@ -46,5 +46,11 @@ Git命令学习笔记
 		每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。
 		当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上。以后的修改就在dev分支上。
 			创建分支
+				git branch dev
+				git checkout dev切换
+				或者
+				git checkout -b dev
+				git checkout命令加上-b参数表示创建并切换
+			查看分支
+				git branch命令会列出所有分支，当前分支前面会标一个*号
 				
-	
