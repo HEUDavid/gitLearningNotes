@@ -95,3 +95,21 @@ Git命令学习笔记
 			你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
 				git stash apply stash@{0}
 				这里的命令不会操作！！！
+	Feature分支
+		开发一个新feature，最好新建一个分支；
+		如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。
+	多人协作
+		git remote查看远程库的信息
+		git remote -v
+		推送分支
+			git push origin master
+			git push origin dev
+			这里的其他命令现在还用不到
+			
+	加入开源协作
+		首先fork作者的项目
+		从自己的账号下clone仓库
+		向自己的仓库推送
+		在Github上发起一个pull request
+
+待续……
