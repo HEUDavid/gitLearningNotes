@@ -39,6 +39,8 @@ Git命令学习笔记
 			git add <file>
 			git commit -m "desc"
 			git push origin master
-
+	git克隆
+		git clone  git@github.com:HEUDavid/gitSkills.git
+		Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
 	
 	
