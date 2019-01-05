@@ -1,11 +1,12 @@
 Git命令学习笔记
-	Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上。
-	pwd显示当前目录
+	Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上，即由多人共同开发。
+	pwd显示当前git仓库所在的目录
 	git init将这个目录变成Git可以管理的仓库
-	第一步将文件放到Git可以管理的文件目录下
-	git add <file>添加文件修改到暂存区
+	将文件放到Git可以管理的文件目录下
+	git add <path>添加文件修改到暂存区，可以添加具体文件、文件夹、通配符（git add .）
 	git commit
 	git commit -m "说明"把暂存区提交到当前分支master
+	可以多次add，一次commit
 	git status
 版本回退
 	git log查看历史记录
@@ -18,7 +19,8 @@ Git命令学习笔记
 工作区与暂存区
 	工作区（Working Directory）就是所看到的目录
 	版本库（Repositor）就是.git
-	暂存区.git里包含了很多重要信息其中就有暂存区（stage）
+	暂存区（stage）
+		.git里包含了很多重要信息其中就有暂存区（stage）
 	git diff HEAD -- <file>查看当前版本库和工作区的区别
 撤销修改
 	git checkout -- <file>回到最近一次git commit或者git add
@@ -62,6 +64,12 @@ Git命令学习笔记
 			解决分支冲突
 				当Git无法自动合并分支时，就要手动解决。
 
+			分支合并
+				现在在dev1分支上，将其合并到dev分支上
+				git checkout dev
+				git merge dev1
+				下面就可以提交更新了
+				
 			实例：
 				这是master分支。
 			实例：
@@ -113,5 +121,14 @@ Git命令学习笔记
 		从自己的账号下clone仓库
 		向自己的仓库推送
 		在Github上发起一个pull request
-
-待续……
+		
+	添加忽略文件
+		忽略一些配置文件
+		在.git所在目录添加.gitignore（这是一个隐藏文件），
+		touch .gitignore
+		如果要忽略的文件已经在索引里，需要用这个命令先删除
+		想要忽略的文件已经添加到缓存中去了，我们可以使用rm命令将其从中移除：
+		it rm --cached <FILENAME>
+		可以使用正则表达式
+	删除本地仓库
+	
