@@ -1,0 +1,21 @@
+WIN10的Linux子系统安装位置：
+C:\Users\{user namae}\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu16.04onWindows_79rhkp1fndgsc\LocalState\rootfs
+
+update 三个命令的区别：
+apt-get update 更新软件源中的所有软件列表，类似手机应用市场检查更新。
+apt-get upgrade 升级软件，类似手机应用市场检查更新之后的全部升级。
+apt-get dist-upgrade 除了执行升级之外，还可以智能地处理新版本的依赖关系（attempt to upgrade the most important packages at the expense of less important ones if necessary）。
+
+切换到root账户：
+sudo su
+su
+su - root
+
+命令格式：C O O
+常用命令：
+rm -rf ./test
+
+文件含义：
+~ home目录
+. 当前目录
+.. 上一级目录
