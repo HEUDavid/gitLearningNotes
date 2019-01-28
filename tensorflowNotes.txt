@@ -1,0 +1,39 @@
+Tensorflow笔记
+
+张量tensor：多维数组 列表 表示数据
+阶：张量的维度
+0阶标量
+1阶向量
+2阶矩阵
+n阶张量
+
+计算图Graph=>神经网络
+import tensorflow as tf
+x = tf.constant([1.0, 2.0])
+w = tf.constant([3.0, 4.0])
+y = tf.matmul(x, w)
+print y
+Tensor("matmul:0", shape(1,1), dtype=float32)
+	节点名：第0个输出
+会话Session=>执行计算图 节点运算=>优化线上的权重 参数=>得到模型
+with tf.Session() as sess:
+	print sess.run(y)
+
+参数 线上的权重 变量 随机给初值
+w = tf.Variable(tf.random_normal([2, 3], stddev=2, mean=0, seed=1))
+				tf.random_uniform()
+				tf.truncated_normal()去掉过大的偏离点
+
+tf.zeros([3, 2], int32)
+tf.ones([3, 2], int32)
+tf.fill([3, 2], 6)
+tf.constant([3, 2, 1])
+
+NN实现过程：
+	1、准备数据集，提取特征，作为输入为给NN
+	2、搭建NN结构，从输入到输出 先搭建计算图，后用会话执行
+		NN前向传播算法，计算输出
+	3、大量特征数据喂给NN，迭代优化参数
+		NN反向传播算法，优化参数训练模型
+		每一次的输出与标准答案的差反向传给神经网络，调整参数，直到模型达到要求
+	4、使用训练好的模型预测和分类

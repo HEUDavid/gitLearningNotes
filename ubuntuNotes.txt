@@ -7,6 +7,9 @@ apt-get upgrade 升级软件，类似手机应用市场检查更新之后的全�
 apt-get dist-upgrade 除了执行升级之外，还可以智能地处理新版本的依赖关系（attempt to upgrade the most important packages at the expense of less important ones if necessary）。
 
 切换到root账户：
+第一次切换出错，root未设置密码
+sudo passwd root
+以后就可以：
 sudo su
 su
 su - root
