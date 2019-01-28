@@ -33,7 +33,14 @@ Git命令学习笔记
 远程仓库
 	Git与SVN
 	Git配置
-		git bush
+		设置用户，三个级别，分别查看：
+		git config --system --list
+		git config --global  --list
+		git config --local  --list
+		常用的只需：
+			git config --global user.name "Your Name"
+			git config --global user.email "email@example.com"
+		打开git
 		ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 		将生成的公钥配置到Github账户中
 		测试连接
