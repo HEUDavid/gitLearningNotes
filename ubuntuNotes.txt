@@ -64,3 +64,9 @@ colorscheme molokai
 set t_Co=256
 set background=dark
 
+配置Notepad++
+Bash Here
+cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl
+
+Run Python3
+cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl python3 "$(NAME_PART).py" & ECHO. & PAUSE & EXIT
