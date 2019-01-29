@@ -1,6 +1,8 @@
 WIN10的Linux子系统安装位置：
 C:\Users\{user namae}\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu16.04onWindows_79rhkp1fndgsc\LocalState\rootfs
 
+更新国内源地址：
+/etc/apt/sources.list 要先做备份
 update 三个命令的区别：
 apt-get update 更新软件源中的所有软件列表，类似手机应用市场检查更新。
 apt-get upgrade 升级软件，类似手机应用市场检查更新之后的全部升级。
@@ -9,6 +11,7 @@ apt-get dist-upgrade 除了执行升级之外，还可以智能地处理新版�
 切换到root账户：
 第一次切换出错，root未设置密码
 sudo passwd root
+
 以后就可以：
 sudo su
 su
@@ -17,8 +20,47 @@ su - root
 命令格式：C O O
 常用命令：
 rm -rf ./test
+cp 源文件 目标文件（夹）
 
-文件含义：
+文件符号含义：
 ~ home目录
 . 当前目录
 .. 上一级目录
+
+ln命令：
+硬链接 hard link ln /aa/a.txt /bb/b.txt
+软链接 symbolic link 也叫符号链接 可以对目录进行连接 类似快捷方式
+ln -s 源文件 目标文件:
+ln -s /mnt/f/dev /home/xiang
+
+为python3创建别名
+查看所有命令别名alias
+删除别名unalias 别名
+创建别名alias foo='cd /var/www;ls -la' 
+		alias ll='ls -l'
+写入配置文件中
+step1:打开~/.bashrc文件
+vim .bashrc
+step2:在文件中# some more ls aliases下面添加配置语句
+alias py='python3'
+step3:重新执行刚修改的初始化文档
+source ~/.bashrc
+
+配置vim
+set encoding=utf-8
+set smarttab
+" 设置tab符长度为4个空格
+set tabstop=4
+" 设置换行自动缩进长度为4个空格
+set shiftwidth=4
+" 设置tab符自动转换为空格
+set expandtab
+" 设置智能缩进，其他可选缩进方式：autoindent, cindent, indentexpr
+set smartindent
+" 设置显示行号，关闭行号显示命令：set nonumber
+set number
+" 需要单独下载
+colorscheme molokai
+set t_Co=256
+set background=dark
+
