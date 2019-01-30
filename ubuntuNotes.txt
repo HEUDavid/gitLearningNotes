@@ -1,26 +1,28 @@
 WIN10的Linux子系统安装位置：
 C:\Users\{user namae}\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu16.04onWindows_79rhkp1fndgsc\LocalState\rootfs
 
-更新国内源地址：
-/etc/apt/sources.list 要先做备份
-update 三个命令的区别：
-apt-get update 更新软件源中的所有软件列表，类似手机应用市场检查更新。
-apt-get upgrade 升级软件，类似手机应用市场检查更新之后的全部升级。
-apt-get dist-upgrade 除了执行升级之外，还可以智能地处理新版本的依赖关系（attempt to upgrade the most important packages at the expense of less important ones if necessary）。
-
-切换到root账户：
+设置root账户：
 第一次切换出错，root未设置密码
 sudo passwd root
-
 以后就可以：
 sudo su
 su
 su - root
 
+更新国内源地址：
+/etc/apt/sources.list 先做备份
+中科大源地址生成工具：
+https://mirrors.ustc.edu.cn/repogen/
+三个命令的区别：
+apt-get update 更新软件源中的所有软件列表，类似手机应用市场检查更新。
+apt-get upgrade 升级软件，类似手机应用市场检查更新之后的全部升级。
+apt-get dist-upgrade 除了执行升级之外，还可以智能地处理新版本的依赖关系（attempt to upgrade the most important packages at the expense of less important ones if necessary）。
+
 命令格式：C O O
 常用命令：
-rm -rf ./test
-cp 源文件 目标文件（夹）
+rm -rf 文件（夹）
+cp -rf 源文件 目标文件（夹）
+tar 
 
 文件符号含义：
 ~ home目录
@@ -28,23 +30,26 @@ cp 源文件 目标文件（夹）
 .. 上一级目录
 
 ln命令：
-硬链接 hard link ln /aa/a.txt /bb/b.txt
+硬链接 hard link
+ln /aa/a.txt /bb/b.txt
 软链接 symbolic link 也叫符号链接 可以对目录进行连接 类似快捷方式
-ln -s 源文件 目标文件:
+ln -s 源文件 目标文件
 ln -s /mnt/f/dev /home/xiang
 
-为python3创建别名
+命令简写，创建别名：
 查看所有命令别名alias
 删除别名unalias 别名
 创建别名alias foo='cd /var/www;ls -la' 
 		alias ll='ls -l'
 写入配置文件中
-step1:打开~/.bashrc文件
-vim .bashrc
-step2:在文件中# some more ls aliases下面添加配置语句
-alias py='python3'
-step3:重新执行刚修改的初始化文档
-source ~/.bashrc
+step1:
+    打开~/.bashrc
+    vim .bashrc
+step2:
+    在文件中 # some more ls aliases 下面添加配置语句
+    alias py='python3'
+step3:
+    source ~/.bashrc 重新包含配置，常用到
 
 配置vim
 set encoding=utf-8
@@ -64,9 +69,32 @@ colorscheme molokai
 set t_Co=256
 set background=dark
 
+wsl配置C/C++开发环境
+sudo apt-get install build-essential
+sudo apt-get install gcc g++ gdb
+
 配置Notepad++
 Bash Here
 cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl
 
 Run Python3
 cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl python3 "$(NAME_PART).py" & ECHO. & PAUSE & EXIT
+
+Run C
+cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl gcc "$(NAME_PART).c" -o "$(NAME_PART).exe" & wsl if [ -f "$(NAME_PART).exe" ]; then echo C程序编译成功，输出：; "./$(NAME_PART).exe"; rm -rf "./$(NAME_PART).exe"; else echo 编译失败; fi & ECHO. & PAUSE & EXIT
+
+Run C++
+cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl g++ "$(NAME_PART).cpp" -o "$(NAME_PART).exe" & wsl if [ -f "$(NAME_PART).exe" ]; then echo C++程序编译成功，输出：; "./$(NAME_PART).exe"; rm -rf "./$(NAME_PART).exe"; else echo 编译失败; fi & ECHO. & PAUSE & EXIT
+
+echo 编译成功
+echo 当前时间: `date "+%Y-%m-%d %H:%M:%S"`
+echo 编译时间: `date -d "1970-01-01 + $(stat -c %Y "$(NAME_PART).exe") secs" '+%F %X'`
+
+用gdb调试C/C++程序 编译时带-g参数
+gcc -g test.c -o debug
+gdb debug
+
+g++ -g test.cpp -o debug
+gdb debug
+
+gdb调试 list break run next step print line
