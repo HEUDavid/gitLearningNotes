@@ -1,11 +1,15 @@
 Tensorflow笔记
 
-张量tensor：多维数组 列表 表示数据
+安装Tensorflow
+export TF_BINARY_URL=https://mirrors.tuna.tsinghua.edu.cn/tensorflow/linux/cpu/tensorflow-1.3.0-cp27-none-linux_x86_64.whl
+pip install $TF_BINARY_URL
+
+tensor 张量：多维数组 列表 表示数据
 阶：张量的维度
-0阶标量
-1阶向量
-2阶矩阵
-n阶张量
+    0阶标量
+    1阶向量
+    2阶矩阵
+    n阶张量
 
 计算图Graph=>神经网络
 import tensorflow as tf
@@ -13,8 +17,8 @@ x = tf.constant([1.0, 2.0])
 w = tf.constant([3.0, 4.0])
 y = tf.matmul(x, w)
 print y
-Tensor("matmul:0", shape(1,1), dtype=float32)
-    节点名：第0个输出
+Tensor("matmul:0", shape(1,1), dtype=float32) 节点名：第0个输出 形状 类型
+
 会话Session=>执行计算图 节点运算=>优化线上的权重 参数=>得到模型
 with tf.Session() as sess:
     print sess.run(y)

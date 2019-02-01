@@ -1,8 +1,10 @@
+Ubuntu操作笔记
+
 WIN10的Linux子系统安装位置：
 C:\Users\{user namae}\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu16.04onWindows_79rhkp1fndgsc\LocalState\rootfs
 
 设置root账户：
-第一次切换出错，root未设置密码
+第一次切换出错 root未设置密码
 sudo passwd root
 以后就可以：
 sudo su
@@ -22,7 +24,7 @@ apt-get dist-upgrade 除了执行升级之外，还可以智能地处理新版�
 常用命令：
 rm -rf 文件（夹）
 cp -rf 源文件 目标文件（夹）
-tar 
+tar -xzvf Python-2.7.15.tgz
 
 文件符号含义：
 ~ home目录
@@ -36,12 +38,11 @@ ln /aa/a.txt /bb/b.txt
 ln -s 源文件 目标文件
 ln -s /mnt/f/dev /home/xiang
 
-命令简写，创建别名：
-查看所有命令别名alias
+命令简写 创建别名：
+查看所有别名alias
 删除别名unalias 别名
-创建别名alias foo='cd /var/www;ls -la' 
-		alias ll='ls -l'
-写入配置文件中
+创建别名alias ll='ls -l'
+写入配置文件中：
 step1:
     打开~/.bashrc
     vim .bashrc
@@ -49,9 +50,9 @@ step2:
     在文件中 # some more ls aliases 下面添加配置语句
     alias py='python3'
 step3:
-    source ~/.bashrc 重新包含配置，常用到
+    source ~/.bashrc 重新包含配置，常用
 
-配置vim
+配置vim：
 set encoding=utf-8
 set smarttab
 " 设置tab符长度为4个空格
@@ -69,13 +70,78 @@ colorscheme molokai
 set t_Co=256
 set background=dark
 
-wsl配置C/C++开发环境
+配置C/C++开发环境：
 sudo apt-get install build-essential
 sudo apt-get install gcc g++ gdb
+
+配置Python环境：
+为python3安装最新版本的pip3 用Ubuntu源安装的版本太旧，不支持更改pip源
+https://pypi.org/project/setuptools/
+https://pypi.org/project/pip/
+安装pip前要安装setuptools，安装setuptools前要安装distutils，而Ubuntu自带python3没有这个模块
+
+apt-get install python3-distutils
+
+wget https://files.pythonhosted.org/packages/3b/17/81a4ab4c94e9c78f98dfaad0208994129213089361dc53a7cd8de177d1e3/setuptools-40.7.1.zip
+unzip setuptools...
+cd set...
+python3 setup.py build
+python3 setup.py install
+
+wget https://files.pythonhosted.org/packages/c8/89/ad7f27938e59db1f0f55ce214087460f65048626e2226531ba6cb6da15f0/pip-19.0.1.tar.gz
+tar -xzvf pip-19.0.1.tar.gz
+cd pip...
+python3 setup.py build
+python3 setup.py install
+
+安装python2 默认叫python
+apt-get install python
+
+为python安装最新版本的pip
+cd set...
+python setup.py build
+python setup.py install
+
+cd pip
+python setup.py build
+python setup.py install
+
+更换pip源
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+安装其他库的时候可以用
+sudo -H pip3 install -r requirements.txt
+
+切换python版本
+使用update-alternatives来为整个系统更改python版本，以root身份登录，首先罗列出所有可用的python替代版本信息：
+update-alternatives --list python
+如果出现
+update-alternatives: error: no alternatives for python
+则表示python替代版本尚未被update-alternatives命令识别，我们需要更新一下替代列表，将python2.7和python3.6放入其中
+update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+最后的1和2为优先级
+手动指定
+update-alternatives --config python
+
+指定之后，pip2找不到：
+root@DESKTOP-0H8KKSN:/usr/bin# pip2 --version
+Traceback (most recent call last):
+  File "/usr/local/bin/pip2", line 11, in <module>
+    load_entry_point('pip==19.0.1', 'console_scripts', 'pip2')()
+  File "/usr/local/lib/python3.6/dist-packages/setuptools-40.7.1-py3.6.egg/pkg_resources/__init__.py", line 487, in load_entry_point
+  File "/usr/local/lib/python3.6/dist-packages/setuptools-40.7.1-py3.6.egg/pkg_resources/__init__.py", line 2727, in load_entry_point
+ImportError: Entry point ('console_scripts', 'pip2') not found
+
+按照报错，修改/usr/local/bin/pip2
+文件第一行#!/usr/bin/python改为#!/usr/bin/python2
 
 配置Notepad++
 Bash Here
 cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl
+
+Run Python2
+cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl python2 "$(NAME_PART).py" & ECHO. & PAUSE & EXIT
 
 Run Python3
 cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl python3 "$(NAME_PART).py" & ECHO. & PAUSE & EXIT
@@ -91,10 +157,10 @@ echo 当前时间: `date "+%Y-%m-%d %H:%M:%S"`
 echo 编译时间: `date -d "1970-01-01 + $(stat -c %Y "$(NAME_PART).exe") secs" '+%F %X'`
 
 用gdb调试C/C++程序 编译时带-g参数
-gcc -g test.c -o debug
-gdb debug
+gcc -g test.c -o debug.exe
+gdb debug.exe
 
-g++ -g test.cpp -o debug
-gdb debug
+g++ -g test.cpp -o debug.exe
+gdb debug.exe
 
 gdb调试 list break run next step print line
