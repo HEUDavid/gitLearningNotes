@@ -26,7 +26,7 @@ with tf.Session() as sess:
 参数 线上的权重 变量 随机给初值
 w = tf.Variable(tf.random_normal([2, 3], stddev=2, mean=0, seed=1))
                 tf.random_uniform()
-                tf.truncated_normal()去掉过大的偏离点
+                tf.truncated_normal() 去掉过大偏离点的正态分布
 
 tf.zeros([3, 2], int32)
 tf.ones([3, 2], int32)
@@ -41,3 +41,27 @@ NN实现过程：
         NN反向传播算法，优化参数训练模型
         每一次的输出与标准答案的差反向传给神经网络，调整参数，直到模型达到要求
     4、使用训练好的模型预测和分类
+
+输入不是计算层 计算层从输入后开始算
+
+变量初始化：在sess.run函数中用tf.global_variables_initializer()
+    init_op = tf.global_variables_initializer()
+    sess.run(init_op)
+计算图节点运算：
+    sess.run(y)
+用tf.placeholder占位：
+喂一组数据：
+    x = tf.placeholder(tf.float32, shape=(1, 2))
+    sess.run(y, feed_dict={x:[[0.5,0.6]]})
+喂多组数据：
+    x = tf.placeholder(tf.float32, shape=(None, 2))
+    sess.run(y, feed_dict={x:[[0.1, 0.2], [0.2, 0.3], [0.4, 0.5]]})
+
+反向传播 训练参数模型，在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小
+损失函数loss 预测值y与已知答案y_的差距
+均方误差MSE 有偏估计的均方误差准则
+    MSE(y_, y)=Sigma(y-y_)2/n
+    loss = tf.reduce_mean(tf.square(y_-y))
+
+
+
