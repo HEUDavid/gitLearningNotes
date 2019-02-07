@@ -1,7 +1,7 @@
 Ubuntu操作笔记
 
 WIN10的Linux子系统安装位置：
-C:\Users\{user namae}\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu16.04onWindows_79rhkp1fndgsc\LocalState\rootfs
+C:\Users\{user name}\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu16.04onWindows_79rhkp1fndgsc\LocalState\rootfs
 
 设置root账户：
 第一次切换出错 root未设置密码
