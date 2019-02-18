@@ -1,6 +1,31 @@
 程序设计笔记
 
 程序设计基础
+编码 机器语言 汇编语言 高级语言
+16位无符号数 0 2**16-1
+16位有符号数 0 2**15-1 -2**15 -2**15+1 -1 排列有跳跃
+计算机字与字长
+计算机求解问题
+问题描述 数学建模 算法设计 程序设计 问题的解
+算法Algorithm 为解决一个具体问题而采取的 确定的 有限的 操作步骤
+程序 = 算法 + 数据结构
+程序设计 算法设计 结构设计
+
+传统流程图
+开始 结束 椭圆
+处理 矩形
+输入 输出 平行四边形
+判断 菱形
+连接符 小圆
+流程线
+N-S结构化流程图 取消了流程线
+
+顺序结构
+选择结构
+单分支 双分支 多分支 
+循环结构
+条件控制 计数控制
+当型 直到型
 
 C语言程序设计
 
@@ -19,7 +44,11 @@ dir(math)
 help(math.sin)
 
 input()函数 默认当作一个字符串，使用folat()等类型转换
-bool->int->float->complex  
+bool->int->float->complex 
+print()
+x = 32
+print("输出:%0.2f"%x)
+print("输出:{0:0.2f}".format(x))
 
 while与for循环 任何for都可以用while改写
 while不确定次数
@@ -33,6 +62,15 @@ continue跳过本次循环
 阶乘
 斐波那契数列
 路边随机停车问题
+长度为5的马路，平均能停多少辆长度为1的汽车？
+def park_randomly(low, high):
+    if high - low < 1:
+        return 0
+    else:
+        x = 
+        .uniform(low, high-1)
+        return 1 + park_randomly(low, x) + park_randomly(x+1, high)
+
 汉诺塔问题
 定义函数hanoi(n, A, B, C)表示把A上的n个盘子移动到C上，其中可以用到B
 def hanoi(n, A, B, C):
@@ -113,3 +151,26 @@ Kitty.move()
 _foo: 以单下划线开头的表示的是protected类型的变量，即保护类型只能允许其本身与子类进行访问，不能用于from module import *
 __foo: 双下划线的表示的是私有类型(private)的变量, 只能是允许这个类本身进行访问了
 __foo__: 头尾双下划线定义的是特列方法，类似__init__() 之类的
+
+编码
+ASCII码 7个二进制位编码
+Python提供ord()与char()
+ord('a')
+97
+char(97)
+'a'
+Unicode 跨平台 跨语言 统一且唯一的二进制编码 每个字符占用两个字节
+编码encode()
+b'\xe5\xa4\xa7'
+'大'.encode()
+解码decode()
+b'\xe5\xa4\xa7'.decode()
+'大'
+
+文件操作
+file = open(<name>, <mode>)
+for line in file.readlines():
+    pass
+file.close()
+Python将文件看作是一个行序列
+read() readlines() readline()
