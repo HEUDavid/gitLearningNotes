@@ -29,7 +29,7 @@ N-S结构化流程图 取消了流程线
 
 C语言程序设计
 
-高级语言程序设计（Python）
+高级语言程序设计(Python)
 
 函数
 变量作用域 全局变量 局部变量
@@ -37,7 +37,7 @@ global
 
 函数方法=>模块=>包
 from bs4 import BeautifulSoup
-模块（module）是一个Python文件，以.py结尾，包含了Python函数等语句。先导入，再使用，用模块.函数名调用。
+模块(module)是一个Python文件，以.py结尾，包含了Python函数等语句。先导入，再使用，用模块.函数名调用。
 查看模块的函数方法
 import math
 dir(math)
@@ -133,6 +133,7 @@ class Mammals(Animals):
 
 class Cats(Mammals):
     def __init__(self, spots):
+        #__init__构造函数:初始化对象的各属性
         self.spots = spots
     def catch_mouse(self):
         print("catch mouse")
@@ -151,6 +152,14 @@ Kitty.move()
 _foo: 以单下划线开头的表示的是protected类型的变量，即保护类型只能允许其本身与子类进行访问，不能用于from module import *
 __foo: 双下划线的表示的是私有类型(private)的变量, 只能是允许这个类本身进行访问了
 __foo__: 头尾双下划线定义的是特列方法，类似__init__() 之类的
+
+面相对象的特点
+封装
+抽象对象 将数据和操作打包 对象的实现与使用独力 支持代码复用
+多态
+对象怎么回应一个依赖于对象类型或种类的消息 在不同情况下用一个函数名启用不同方法 灵活性
+继承
+类继承 避免重复操作 提高代码复用性
 
 编码
 ASCII码 7个二进制位编码
@@ -174,3 +183,48 @@ for line in file.readlines():
 file.close()
 Python将文件看作是一个行序列
 read() readlines() readline()
+
+Python Web Django2.0操作
+HTTP协议 Hyper Text Transfer Protocol 超文本传输协议
+基于“请求与响应”模式 无状态的应用层协议 采用URL作为网络资源定位标志 http://hsot[:port][path]
+GET HEAD POST PUT PATCH DELETE
+Web服务器 提供HTTP/HTTPS访问服务
+Django MTV Model-Template-View        Web框架，一个半成品
+用户<-HTTP->WSGI<-URLs->路由(如mysite下的urls.py)<-->功能处理逻辑(某个app下的views.py)<-->Models(某个app下的models.py) Template(模板语言)
+
+用Django建立一个Web项目的步骤：
+django-admin startproject mysite
+mysite/ 外层目录可以更改、打包
+    mysite/ 工程目录
+        _init_.py 一个将mysite定义为包的空文件
+        settings.py 配置整个工程文件
+        urls.py 路由文件 URL路由的声明文件
+        wsgi.py 基于WSGI的Web服务器的配置文件 一般不动
+    manage.py 与整个工程进行交互的命令行工具
+    helloapp/ 创建的具体应用
+
+修改，增加功能
+python manage.py startapp helloapp
+    helloapp/
+        views.py 写具体的函数
+
+到mysite下的urls.py指定URL与处理函数之间的关系
+path('index/', views.hello)
+      某个URL  处理URL所使用的函数
+
+设置模板路径
+mysite/
+    settings.py
+        TEMPLATES = [
+            {
+                'DIRS': [
+                    os.path.join(BASE_DIR, 'helloapp/templates'),
+                ],
+                # 其他
+            },
+        ]
+
+运行服务器
+python manage.py runserver
+
+Django URL路由机制
