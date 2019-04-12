@@ -88,8 +88,17 @@ hanoi(n, "左", "中", "右")
 format()
 print("Hello {} good {}.".format(5, "days"))
 
-正则表达式
+正则表达式 Regular Expression
+import re
+
+简洁表达一组字符串的表达式 一行就是特征（模式）
+编译：将符合正则表达式语法的字符串转换成正则表达式特征
+regex = 'P(Y|YT|YTH|YTHO)?N'
+p = re.compile(regex)
+
 .任意一个字符
+[] 字符集对单个字符给出取值范围 [abc]表示a、b、c [a-z]表示a到z的单个字符
+[^] 非字符集
 \d任意一个数字
 \d+一系列数字
 [a-z]一个小写字母
