@@ -383,13 +383,134 @@ class Solution:
         else:
             p3.next = p2
         return pHead3.next
-
-
-
-
-
-
-
+'''
+输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
+'''
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def HasSubtree(self, pRoot1, pRoot2):
+        # write code here
+        result = False
+        if pRoot1 != None and pRoot2 != None:
+            if pRoot1.val == pRoot2.val:
+                result = self.DoesTree1haveTree2(pRoot1, pRoot2)
+            if not result:
+                result = self.HasSubtree(pRoot1.left, pRoot2)
+            if not result:
+                result = self.HasSubtree(pRoot1.right, pRoot2)
+        return result
+    # 用于递归判断树的每个节点是否相同
+    # 需要注意的地方是: 前两个if语句不可以颠倒顺序
+    # 如果颠倒顺序, 会先判断pRoot1是否为None, 其实这个时候pRoot2的结点已经遍历完成确定相等了, 但是返回了False, 判断错误
+    def DoesTree1haveTree2(self, pRoot1, pRoot2):
+        if pRoot2 == None:
+            return True
+        if pRoot1 == None:
+            return False
+        if pRoot1.val != pRoot2.val:
+            return False
+        return self.DoesTree1haveTree2(pRoot1.left, pRoot2.left) and self.DoesTree1haveTree2(pRoot1.right, pRoot2.right)
+'''
+操作给定的二叉树，将其变换为源二叉树的镜像。
+'''
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回镜像树的根节点
+    def Mirror(self, root):
+        # write code here
+        if root:
+            temp = root.left
+            root.left = root.right
+            root.right = temp
+            self.Mirror(root.left)
+            self.Mirror(root.right)
+        return None
+'''
+输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，
+例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10
+'''
+# -*- coding:utf-8 -*-
+class Solution:
+    # matrix类型为二维列表，需要返回列表
+    def printMatrix(self, matrix):
+        # write code here
+        res = []
+        while(matrix):
+            res += matrix.pop(0)
+            if not matrix or not matrix[0]:
+                break
+            matrix = self.turn(matrix)
+        return res
+    def turn(self, matrix):
+        num_r = len(matrix)
+        num_c = len(matrix[0])
+        newmat = []
+        for i in range(num_c):
+            newmat2 = []
+            for j in range(num_r):
+                newmat2.append(matrix[j][i])
+            newmat.append(newmat2)
+        newmat.reverse()
+        return newmat
+'''
+定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+'''
+# -*- coding:utf-8 -*-
+class Solution:
+    def __init__(self):
+        self.array = []
+    def push(self, node):
+        # write code here
+        self.array.append(node)
+    def pop(self):
+        # write code here
+        self.array.pop()
+    def top(self):
+        # write code here
+        return self.array[-1]
+    def min(self):
+        # write code here
+        return min(self.array)
+# -*- coding:utf-8 -*-
+# 辅助数组
+class Solution:
+    def __init__(self):
+        self.stack = []
+        self.minList = []
+    def push(self, node):
+        # write code here
+        self.stack.append(node)
+        if not self.minList:
+            self.minList.append(node)
+        else:
+            self.minList.append(min(self.minList[-1], node))
+    def pop(self):
+        # write code here
+        if not self.stack:
+            return None
+        self.minList.pop()
+        return self.stack.pop()
+    def top(self):
+        # write code here
+        if not self.stack:
+            return None
+        return self.stack[-1]
+    def min(self):
+        # write code here
+        if not self.minList:
+            return None
+        return self.minList[-1]
 
 
 

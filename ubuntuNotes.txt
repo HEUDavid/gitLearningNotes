@@ -1,7 +1,18 @@
 Ubuntu操作笔记
 
+
+Win10关闭快速启动 安全模式
+
 WIN10的Linux子系统安装位置：
 C:\Users\{user name}\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu16.04onWindows_79rhkp1fndgsc\LocalState\rootfs
+
+查看md5
+certutil -hashfile D:\1.exe MD5
+certutil -hashfile D:\1.exe SHA1
+certutil -hashfile D:\1.exe SHA256
+
+下载 Rufus 和 ISO
+制作启动盘
 
 设置root账户：
 第一次切换出错 root未设置密码
@@ -12,19 +23,76 @@ su
 su - root
 
 更新国内源地址：
-/etc/apt/sources.list 先做备份
+/etc/apt/sources.list
+
+# 清华大学镜像源
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+
+
 中科大源地址生成工具：
 https://mirrors.ustc.edu.cn/repogen/
+
 三个命令的区别：
 apt-get update 更新软件源中的所有软件列表，类似手机应用市场检查更新。
 apt-get upgrade 升级软件，类似手机应用市场检查更新之后的全部升级。
 apt-get dist-upgrade 除了执行升级之外，还可以智能地处理新版本的依赖关系（attempt to upgrade the most important packages at the expense of less important ones if necessary）。
+
+安装语言
+sudo apt install fcitx
+点击语言支持修改成fcitx
+安装搜狗输入法
+重启 Ctrl + ，切换成搜狗
+
+安装shadowsocks
+直接点击运行
+在设置中点击手动模式
+
+安装 Chrome
+安装 Google Chrome 时，也会一并添加 Google 存储区，这样，您的系统就会及时自动更新 Google Chrome。
+如果您不希望添加 Google 存储区，请先执行“sudo touch /etc/default/google-chrome”，然后再安装程序包。
+点击安装包安装
+
+安装配置git vim
+
+系统备份
+安装timeshift
+sudo add-apt-repository -y ppa:teejee2008/ppa
+sudo apt-get update
+sudo apt-get install timeshift
+先退出然后登录授权时间范围内 浏览 创建日志文件
+备份结束
+
+安装pycharm
+输入charm 快速打开
+
+配置autopep8
+https://blog.csdn.net/wuqili_1025/article/details/79886497
+http://lovesoo.org/add-autopep8-to-pycharm.html
+
 
 命令格式：C O O
 常用命令：
 rm -rf 文件（夹）
 cp -rf 源文件 目标文件（夹）
 tar -xzvf Python-2.7.15.tgz
+
+如何全选删除:
+光标移动
+进入可视化模式
+光标移动
+按 d 删除
 
 文件符号含义：
 ~ home目录
@@ -37,6 +105,11 @@ ln /aa/a.txt /bb/b.txt
 软链接 symbolic link 也叫符号链接 可以对目录进行连接 类似快捷方式
 ln -s 源文件 目标文件
 ln -s /mnt/f/dev /home/xiang
+
+开机自动挂载硬盘
+/etc/fstab
+UUID=50E6103BE610242E   /media/F  ntfs    defaults    0   0
+ln -s /media/F /home/xiang/
 
 命令简写 创建别名：
 查看所有别名alias
@@ -53,6 +126,19 @@ step3:
     source ~/.bashrc 重新包含配置，常用
 
 配置vim：
+
+" The following are commented out as they cause vim to behave a lot
+" differently from regular Vi. They are highly recommended though.
+"set showcmd		" Show (partial) command in status line.
+"set showmatch		" Show matching brackets.
+"set ignorecase		" Do case insensitive matching
+"set smartcase		" Do smart case matching
+"set incsearch		" Incremental search
+"set autowrite		" Automatically save before commands like :next and :make
+"set hidden		" Hide buffers when they are abandoned
+"set mouse=a		" Enable mouse usage (all modes)
+
+
 set encoding=utf-8
 set smarttab
 " 设置tab符长度为4个空格
@@ -70,25 +156,33 @@ colorscheme molokai
 set t_Co=256
 set background=dark
 
+
+set mouse=a
 配置C/C++开发环境：
 sudo apt-get install build-essential
 sudo apt-get install gcc g++ gdb
 
+
+
 配置Python环境：
+检查 python3 是否安装
 为python3安装最新版本的pip3 用Ubuntu源安装的版本太旧，不支持更改pip源
+下载地址：
 https://pypi.org/project/setuptools/
 https://pypi.org/project/pip/
 安装pip前要安装setuptools，安装setuptools前要安装distutils，而Ubuntu自带python3没有这个模块
 
+1.
 apt-get install python3-distutils
 
-wget https://files.pythonhosted.org/packages/3b/17/81a4ab4c94e9c78f98dfaad0208994129213089361dc53a7cd8de177d1e3/setuptools-40.7.1.zip
+2.
+wget https://files.pythonhosted.org/packages/1d/64/a18a487b4391a05b9c7f938b94a16d80305bf0369c6b0b9509e86165e1d3/setuptools-41.0.1.zip
 unzip setuptools...
 cd set...
 python3 setup.py build
 python3 setup.py install
 
-wget https://files.pythonhosted.org/packages/c8/89/ad7f27938e59db1f0f55ce214087460f65048626e2226531ba6cb6da15f0/pip-19.0.1.tar.gz
+wget https://files.pythonhosted.org/packages/36/fa/51ca4d57392e2f69397cd6e5af23da2a8d37884a605f9e3f2d3bfdc48397/pip-19.0.3.tar.gz
 tar -xzvf pip-19.0.1.tar.gz
 cd pip...
 python3 setup.py build
@@ -107,7 +201,7 @@ python setup.py build
 python setup.py install
 
 更换pip源
-pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 安装其他库的时候可以用
 sudo -H pip3 install -r requirements.txt
@@ -136,6 +230,9 @@ ImportError: Entry point ('console_scripts', 'pip2') not found
 按照报错，修改/usr/local/bin/pip2
 文件第一行#!/usr/bin/python改为#!/usr/bin/python2
 
+pip install autopep8
+autopep8 --in-place --aggressive --aggressive file.py
+
 配置Notepad++
 Bash Here
 cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl
@@ -145,6 +242,9 @@ cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl python2 "$(NAME_PART).py" & ECHO. & PA
 
 Run Python3
 cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl python3 "$(NAME_PART).py" & ECHO. & PAUSE & EXIT
+
+Autopep8
+cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl autopep8 --in-place --aggressive --aggressive "$(NAME_PART).py" & EXIT
 
 Run C
 cmd /k cd /d "$(CURRENT_DIRECTORY)" & wsl gcc "$(NAME_PART).c" -o "$(NAME_PART).exe" & wsl if [ -f "$(NAME_PART).exe" ]; then echo C程序编译成功，输出：; "./$(NAME_PART).exe"; rm -rf "./$(NAME_PART).exe"; else echo 编译失败; fi & ECHO. & PAUSE & EXIT
@@ -424,9 +524,9 @@ sudo chown root:root jdk-7u21-linux-i586.tar.gz
 
 R           读         数值表示为4
 
-W          写         数值表示为2
+W           写         数值表示为2
 
-X           可执行  数值表示为1
+X           可执行     数值表示为1
 
 
 

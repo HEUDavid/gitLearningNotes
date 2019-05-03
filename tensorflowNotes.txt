@@ -1,8 +1,66 @@
 Tensorflow笔记
 
-安装Tensorflow
-export TF_BINARY_URL=https://mirrors.tuna.tsinghua.edu.cn/tensorflow/linux/cpu/tensorflow-1.3.0-cp27-none-linux_x86_64.whl
-pip install $TF_BINARY_URL
+
+安装tensorflow-gpu
+0.安装依赖
+sudo apt-get install g++ freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libglu1-mesa libglu1-mesa-dev
+
+1.安装显卡驱动(也可以直接在cuda中安装显卡驱动)
+sudo add-apt-repository ppa:graphics-drivers/ppa
+ubuntu-drivers devices
+sudo apt install nvidia-430
+安装完成重启并可以使用nvidia-smi查看
+
+2.安装 CUDA
+sudo sh cuda_10.0.130_410.48_linux.run
+需要运行两次 安装文件
+
+===========
+= Summary =
+===========
+
+Driver:   Installed
+Toolkit:  Installed in /usr/local/cuda-10.0
+Samples:  Installed in /root
+
+Please make sure that
+ -   PATH includes /usr/local/cuda-10.0/bin
+ -   LD_LIBRARY_PATH includes /usr/local/cuda-10.0/lib64, or, add /usr/local/cuda-10.0/lib64 to /etc/ld.so.conf and run ldconfig as root
+
+To uninstall the CUDA Toolkit, run the uninstall script in /usr/local/cuda-10.0/bin
+To uninstall the NVIDIA Driver, run nvidia-uninstall
+
+Please see CUDA_Installation_Guide_Linux.pdf in /usr/local/cuda-10.0/doc/pdf for detailed information on setting up CUDA.
+
+Logfile is /tmp/cuda_install_2106.log
+
+3.环境变量
+vim ~/.bashrc
+# 环境变量
+
+export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+source ~/.bashrc
+
+cuda10安装到这里
+4.安装cudnn
+sudo dpkg -i libcudnn7_7.4.2.24-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7-dev_7.4.2.24-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7-doc_7.4.2.24-1+cuda10.0_amd64.deb
+
+测试 cuda
+cd /usr/local/cuda-10.1/samples/1_Utilities/deviceQuery
+sudo make　　＃编译deviceQuery.cpp文件，生成deviceQuery可执行文件
+./deviceQuery
+出现Result = PASS 说明安装完成
+
+测试 cudnn
+cp -r /usr/src/cudnn_samples_v7/ $HOME
+cd $HOME/cudnn_samples_v7/mnistCUDNN
+make clean && make
+./mnistCUDNN
+
+5.安装tensorflow-gpu
 
 tensor 张量：多维数组 列表 表示数据
 阶：张量的维度

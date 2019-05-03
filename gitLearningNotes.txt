@@ -8,6 +8,18 @@ Git干货，常用
     git status
     git push origin master
     git clone ...
+指定文件
+    .gitignore
+    /*忽略所有
+    !/.git/包含.git
+    !/pictures/包含文件夹
+    !/LICENSE包含单个文件
+    !/README.md
+    !/*.py
+    要先删除缓存
+    git rm -r --cached .
+    git add .
+    git commit -m 'We really don't want Git to track this anymore!'
 
 版本回退
     git log 查看历史记录
