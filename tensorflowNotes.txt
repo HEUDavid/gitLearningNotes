@@ -34,7 +34,7 @@ Please see CUDA_Installation_Guide_Linux.pdf in /usr/local/cuda-10.0/doc/pdf for
 
 Logfile is /tmp/cuda_install_2106.log
 
-3.环境变量
+3.环境变量bash.bashrc
 vim ~/.bashrc
 # 环境变量
 

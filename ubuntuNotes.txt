@@ -1,5 +1,5 @@
 Ubuntu操作笔记
-
+apt-get install g++ freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libglu1-mesa libglu1-mesa-dev git vim python3-distutils
 
 Win10关闭快速启动 安全模式
 
@@ -25,20 +25,6 @@ su - root
 更新国内源地址：
 /etc/apt/sources.list
 
-# 清华大学镜像源
-# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-
-# 预发布软件源，不建议启用
-# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
 
 
 中科大源地址生成工具：
@@ -48,6 +34,7 @@ https://mirrors.ustc.edu.cn/repogen/
 apt-get update 更新软件源中的所有软件列表，类似手机应用市场检查更新。
 apt-get upgrade 升级软件，类似手机应用市场检查更新之后的全部升级。
 apt-get dist-upgrade 除了执行升级之外，还可以智能地处理新版本的依赖关系（attempt to upgrade the most important packages at the expense of less important ones if necessary）。
+apt-get install -f
 
 安装语言
 sudo apt install fcitx
@@ -62,7 +49,7 @@ sudo apt install fcitx
 安装 Chrome
 安装 Google Chrome 时，也会一并添加 Google 存储区，这样，您的系统就会及时自动更新 Google Chrome。
 如果您不希望添加 Google 存储区，请先执行“sudo touch /etc/default/google-chrome”，然后再安装程序包。
-点击安装包安装
+
 
 安装配置git vim
 
@@ -74,8 +61,6 @@ sudo apt-get install timeshift
 先退出然后登录授权时间范围内 浏览 创建日志文件
 备份结束
 
-安装pycharm
-输入charm 快速打开
 
 配置autopep8
 https://blog.csdn.net/wuqili_1025/article/details/79886497
@@ -193,8 +178,8 @@ apt-get install python
 
 为python安装最新版本的pip
 cd set...
-python setup.py build
-python setup.py install
+python2 setup.py build
+python2 setup.py install
 
 cd pip
 python setup.py build
