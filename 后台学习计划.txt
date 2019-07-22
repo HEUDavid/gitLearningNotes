@@ -1,0 +1,35 @@
+后台开发学习计划
+
+1. svn使用svn创建管理一个项目 7.15
+
+2. linux系统常用命令 每天都写5个命令总结笔记
+    vim grep rz/sz  7.14
+    docker find sed awk netstat tcpdump 7.15
+    lsof sort xargs nohub 7.22
+    top df du ps tar cat iptables date ifconfig free 7.23
+
+3. 学习pypy twisted stackless库
+    一天时间大概了解 7.18
+    每一项2-3天深入了解机制 用法
+    pypy 编译器
+    twisted 网络基础库
+    stackless 协程库
+
+4. redis学习 概况 命令 两天
+
+5. 网络编程基础
+    socket
+    网络模型：
+        select poll epoll
+    json
+    protoBuf
+    
+6. 网络基础协议
+    websocket 一天了解
+
+7. linux系统编程（Linux程序设计）
+    文件操作
+    共享内存
+    多线程基础
+    锁
+
