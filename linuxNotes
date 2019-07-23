@@ -372,11 +372,55 @@ lsof -d 2-3
 
 
 sort
+功能说明：将文本文件内容加以排序,sort可针对文本文件的内容，以行为单位来排序。
+sort file
+sort -u file 去除重复行
+
+sort -n number 行中有数字的排序
+sort -nr number -o number 将排序结果输出到原文件中
+sort -n -k 2 -t'-' date
+
+2019-01-04 以'-'为分隔符 第二个为排序依据
+
+xargs
+xargs 是一个强有力的命令，它能够捕获一个命令的输出，然后传递给另外一个命令。
+
+之所以能用到这个命令，关键是由于很多命令不支持|管道来传递参数，而日常工作中有有这个必要，所以就有了 xargs 命令，例如：
+cat test.txt | xargs -n3
+
+nohub 不挂断地运行命令
+nohub command arg ... & 一般两个一起用
+
+nohub.out维护管理方法 清空nohub.out
+cp /dev/null nohub.out
+cat /dev/null > nohub.out
+
+nohub的重定向 一劳永逸解决nohub.out文件过大的问题
+
+//只输出错误信息到日志文件
+nohup ./program >/dev/null 2>log &
+//什么信息也不要
+nohup ./program >/dev/null 2>&1 &
 
 
+关于/dev/null文件 
+Linux下还有一个特殊的文件/dev/null，它就像一个无底洞，所有重定向到它的信息都会消失得无影无踪。这一点非常有用，当我们不需要回显程序的所有信息时，就可以将输出重定向到/dev/null
 
+top 性能分析工具
 
+virt 虚拟占用内存
+RES 常用内存
+SHR 共享内存
 
+输入k 然后可以快速杀进程
 
+df 统计磁盘信息
+du 查看文件的磁盘使用情况
+ps 显示当前进程的状态
+ps -a 同一个终端 —A 所有进程
+ps -u root
+ps -ef 显示所有进程信息，连同命令行
+ps -ef|grep ssh常用组合用法，查找特定进程
+ps aux列出目前所有的正在内存当中的程序
 
 

@@ -5,8 +5,8 @@
 2. linux系统常用命令 每天都写5个命令总结笔记
     vim grep rz/sz  7.14
     docker find sed awk netstat tcpdump 7.15
-    lsof sort xargs nohub 7.22
-    top df du ps tar cat iptables date ifconfig free 7.23
+    lsof sort xargs nohub top df du ps7.22
+    tar cat iptables date ifconfig free 7.23
 
 3. 学习pypy twisted stackless库
     一天时间大概了解 7.18
