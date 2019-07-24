@@ -6,7 +6,8 @@
     vim grep rz/sz  7.14
     docker find sed awk netstat tcpdump 7.15
     lsof sort xargs nohub top df du ps7.22
-    tar cat iptables date ifconfig free 7.23
+    tar cat date free7.23
+    iptables ifconfig7.24
 
 3. 学习pypy twisted stackless库
     一天时间大概了解 7.18

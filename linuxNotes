@@ -97,12 +97,14 @@ docker run -d -p 8082:80 --name runoob-nginx-test-web -v ~/nginx/www:/usr/share/
 
 容器生命周期管理
 run start stop restart kill rm pause unpause exec
+
 creat(ocker create ：创建一个新的容器但不启动它)
 容器操作
 ps
 inspect(获取元数据)
 top
-attach
+docker attach :连接到正在运行中的容器
+docker exec -it id /bin/bash
 events
 logs
 wait
@@ -135,7 +137,7 @@ shift+g 跳转到最后一行
 替换
 :%s/aa/bb/g 表示将aa替换为bb g表示替换标志全局 i表示大小写不敏感 I表示大小写敏感
 :s/aa/bb/g 当前行
-选中区之后输入:Vim即可自动补全为 :'<,'>
+选中区之后输入 : Vim即可自动补全为 :'<,'>
 :'<,'>s/aa/bb/g
 :5,12s/aa/bb/g
 :.,+2s/aa/bb/g
@@ -192,8 +194,7 @@ grep ^$ logs.log
 
 find
 find . -name "*.c"
-find . -
-type f
+find . -type f
 find . -ctime -20
 find /var/log -type f -mtime +7 -ok rm {} \;
 
@@ -208,6 +209,7 @@ sed '3,$d'
 sed -n '3p' /var/log/yum.log
 sed -n '3,9p' /var/log/yum.log
 sed -n '/hhh/,/omc/p' yum.log 显示包含hhh和omc行之间内容的行
+
 nl file列出文件行号
 
 awk 处理文本文件的语言 是一个强大的文本分析工具
@@ -219,6 +221,10 @@ awk -F, '{print $1,$2}'   log.txt
 awk -v 设置变量
 awk -f {awk脚本} {文件名}
 
+grep 、sed、awk被称为linux中的"三剑客"。
+grep 更适合单纯的查找或匹配文本
+sed  更适合编辑匹配到的文本
+awk  更适合格式化文本，对文本进行较复杂格式处理
 netstat
 netstat -a 列出所有端口
 netstat -at
@@ -424,3 +430,128 @@ ps -ef|grep ssh常用组合用法，查找特定进程
 ps aux列出目前所有的正在内存当中的程序
 
 
+tar [-cxt zj v f pP N] --exclude File
+c creat 创建压缩文件 x 解压 t 查看 z gzip属性 j bzip2属性 v 显示文件压缩解压过程 f 使用档名 p原文件原来的属性 P绝对路径 N后接日期
+
+
+压缩
+tar -cvf /tmp/etc.tar /etc 仅打包不压缩
+tar -zcvf /tmp/etc.tar.gz /etc 以gzip压缩
+tar -jcvf /tmp/etc.tar.bz2 /etc 以bzip2压缩
+
+查看压缩文件里的内容
+tar -tvf /tmp/etc.tar
+tar -ztvf /tmp/etc.tar.gz
+tar -jtvf /tmp/etc.tar.bz2
+
+解压
+tar -zxvf /tmp/etc.tar.gz 将会解压到当前目录下
+
+单独解压一部分
+文件备份 保留其原始权限
+tar -zcvpf /tmp/etc.tar.gz /etc
+
+在home 比某个日期还要新的文件才备份
+tar -N "2005/06/01" -zcvf home.tar.gz /home
+
+不包括
+tar --exclude /home/aa -zcvf myfile.tar.gz /home/* /etc
+
+将/etc 打包后直接解开在/tmp底下 而不产生文件
+cd /tmp
+tar -cvf - /etc | tar -xvf -
+
+cat -n file 带行号
+cat -n file > file1 输入到file1
+清空文件内容
+cat /dev/null > file
+
+
+date +"%Y %m %d %H %M %S"
+
+date -s 设置时间
+
+
+
+free 命令显示系统内存的使用情况，包括物理内存、交换内存(swap)和内核缓冲区内存。
+free -h -s 3
+
+
+iptables 客户端代理 将按照用户的设定执行对应的安全框架 这个安全框架才是真正的防火墙 netfilter 位于内核空间
+封包过滤 封包重定向 网络地址转换
+
+链的概念
+
+具有相同功能的规则的集合叫做表 不同功能的规则 我们可以放置在不同的表中进行管理
+filter表:
+nat表:
+mangle表:拆解报文 做出修改
+raw表:关闭nat表上启用的连接追踪机制
+
+同一个链中表的优先级
+raw --> mangle --> nat --> filter
+
+匹配条件 与 处理动作
+匹配条件 源地址 目标地址 源端口 目标端口
+处理动作 ACCEPT DROP REJECT 
+操作命令:
+查看某张表中的规则
+iptables -t filter -L
+iptables -t 表名 -L
+iptables -t 表名 -L 链名
+
+iptables -t 表名 -v -L -n
+--line-number
+-n 表示不解析IP地址
+
+iptables -F INPUT 清空filter表中INPUT链中的规则
+iptables -t 表名 -F 链名 
+插入
+iptables -t filter -I INPUT 2 -s 192.168.1.146 -j DROP
+-I 首部
+-A 追加
+iptables -t filter -I -P 链名 动作 指定为默认动作
+
+删除 
+iptables -t filter -D INPUT 3
+iptables -t filter -D INPUT -s 192.168.1.146 -j ACCEPT
+修改
+iptables -t 表名 -R 链名 规则序号 规则原本的匹配条件 -j 动作
+
+保存规则
+service iptables save
+iptables-save > /etc/sysconfig/iptables
+iptables-restore < /etc/sysconfig/iptables
+
+ifconfig
+ifconfig工具不仅可以被用来简单地获取网络接口配置信息，还可以修改这些配置。用ifconfig命令配置的网卡信息，在网卡重启后机器重启后，配置就不存在。要想将上述的配置信息永远的存的电脑里，那就要修改网卡的配置文件了。
+
+ifconfig -a
+ifconfig -s
+
+关闭网卡
+ifconfig eth0 down|up
+
+// 配置ip地址
+ifconfig eth0 192.168.1.100
+ 
+// 配置ip地址和子网掩码
+ifconfig eth0 192.168.1.100 netmask 255.255.255.0
+ 
+// 配置ip地址、子网掩码和广播地址
+ifconfig eth0 192.168.1.100 netmask 255.255.255.0 broadcast 192.168.1.255
+ 
+单网卡添加多个IP地址
+
+ifconfig eth0:0 192.168.1.100 netmask 255.255.255.0 up
+ 
+ifconfig eth0:1 192.168.2.100 netmask 255.255.255.0 up
+ 
+
+删除IP地址
+
+ifconfig eth0 del 192.168.1.100
+
+配置ARP
+配置ipv6
+多播 传输单元
