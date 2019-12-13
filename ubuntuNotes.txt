@@ -540,3 +540,34 @@ sudo chmod u+x g+w o+r  filename
 上面的例子可以用数值表示
 
 sudo chmod 765 filename
+
+chown
+
+tyhall51
+smbpasswd -a tyhall51
+
+smb.conf
+
+[global]
+  workgroup = WORKGROUP
+  server string = Samba Server
+  security = user
+  map to guest = bad user
+  passdb backend = tdbsam
+  load printers = no
+  cups options = raw
+  username map = /etc/samba/smbusers
+
+[tyhall51]
+  comment = tyhall51
+  path = /home/tyhall51
+  valid users = tyhall51
+  write list = tyhall51
+  browseable = yes
+  read only = yes
+
+升级centos默认的svn到1.8版本
+
+
+
+

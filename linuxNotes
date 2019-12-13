@@ -33,7 +33,7 @@ docker ps -l 查询最后一次创建的容器
 docker logs id
 
 docker logs name
-docker run 
+docker run
 docker stop
 
 docker pull training/webapp  # 载入镜像
@@ -73,7 +73,7 @@ runoob/ubuntu:v2:指定要创建的目标镜像名
 
 我们可以使用 docker images 命令来查看我们的新镜像 runoob/ubuntu:v2：
 
-docke build 构建镜像
+docker build 构建镜像
 我们需要创建一个 Dockerfile 文件，其中包含一组指令来告诉 Docker 如何构建我们的镜像
 docker build -t runoob/centos:6.7 .
 -t ：指定要创建的目标镜像名
@@ -98,7 +98,7 @@ docker run -d -p 8082:80 --name runoob-nginx-test-web -v ~/nginx/www:/usr/share/
 容器生命周期管理
 run start stop restart kill rm pause unpause exec
 
-creat(ocker create ：创建一个新的容器但不启动它)
+creat(docker create ：创建一个新的容器但不启动它)
 容器操作
 ps
 inspect(获取元数据)
@@ -240,7 +240,6 @@ netstat -st
 netstat -su
 
 netstat -p 显示pid和进程名称
-
 
 
 netstat -nu 显示当前用户的UDP连接状况
