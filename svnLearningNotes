@@ -1,0 +1,6 @@
+svn学习笔记
+
+checkout 将仓库代码拷到本地
+update 同事更新代码到服务器之后 你需要update获得最新的代码
+commit 提交代码到服务器, 记得先update在commit
+
