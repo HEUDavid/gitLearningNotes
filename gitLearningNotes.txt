@@ -1,5 +1,17 @@
 Git学习笔记
 
+# Github
+192.30.253.112 github.com
+185.199.108.153 assets-cdn.github.com
+151.101.229.194 github.global.ssl.fastly.net
+
+# others
+128.199.227.128 mdavid.cn
+219.76.4.4 s3.amazonaws.com
+219.76.4.4 github-cloud.s3.amazonaws.com
+
+
+/etc/init.d/networking restart
 Git干货，常用
     Git是分布式版本控制系统，同一个Git仓库，可以分布到不同的机器上，即由多人共同开发。
     git init 将这个目录变成Git可以管理的仓库
@@ -56,6 +68,7 @@ Git干货，常用
         常用的只需：
             git config --global user.name "David"
             git config --global user.email "david@hrbeu.edu.cn"
+            git config --global core.editor vim
         和GitHub连接：
         ssh-keygen -t rsa -b 4096 -C "david@hrbeu.edu.cn"
         将生成的公钥配置到Github账户中

@@ -62,6 +62,11 @@ make clean && make
 
 5.安装tensorflow-gpu
 
+降低tensorflow提示等级
+vim ~/.bashrc
+# tensorflow
+export TF_CPP_MIN_LOG_LEVEL=2
+
 tensor 张量：多维数组 列表 表示数据
 阶：张量的维度
     0阶标量

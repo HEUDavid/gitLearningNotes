@@ -87,6 +87,8 @@ hanoi(n, "左", "中", "右")
 切片[start:end:step]
 format()
 print("Hello {} good {}.".format(5, "days"))
+print("\033[1;37;41m文本\033[0m")
+
 
 正则表达式 Regular Expression
 import re
@@ -192,6 +194,10 @@ for line in file.readlines():
 file.close()
 Python将文件看作是一个行序列
 read() readlines() readline()
+
+
+from itertools import combinations
+from collections import Counter
 
 Python Web Django2.0操作
 HTTP协议 Hyper Text Transfer Protocol 超文本传输协议

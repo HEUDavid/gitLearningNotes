@@ -1,0 +1,60 @@
+Docker notes
+
+https://docs.docker.com/install/linux/docker-ce/centos/#install-using-the-repository
+
+
+# step 1: 安装必要的一些系统工具
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+# Step 2: 添加软件源信息 阿里云镜像
+sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+# Step 3: 更新并安装Docker-CE
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+# 启动
+sudo systemctl start docker
+
+# 测试
+sudo docker run hello-world
+
+# 配置镜像加速器
+针对Docker客户端版本大于 1.10.0 的用户
+
+您可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器
+sudo mkdir -p /etc/docker
+{
+  "registry-mirrors": ["https://rffu5blf.mirror.aliyuncs.com"]
+}
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+# nginx
+docker run --name nginx-gate -p 80:80 -d -v /root/gate/nginx/conf.d:/etc/nginx/conf.d nginx
+# ubuntu
+docker run -itd --name ubuntu-base-mdavid.cn ubuntu
+docker exec -it ubuntu-base-mdavid.cn /bin/bash
+
+
+更新源
+/etc/apt/sources.list
+
+echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse" >> sources.list
+echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse" >> sources.list
+echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse" >> sources.list
+echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse" >> sources.list
+
+
+echo "deb http://mirrors.tencentyun.com/ubuntu/ bionic main restricted universe multiverse" >> sources.list
+echo "deb http://mirrors.tencentyun.com/ubuntu/ bionic-updates main restricted universe multiverse" >> sources.list
+echo "deb http://mirrors.tencentyun.com/ubuntu/ bionic-backports main restricted universe multiverse" >> sources.list
+echo "deb http://mirrors.tencentyun.com/ubuntu/ bionic-security main restricted universe multiverse" >> sources.list
+
+
+apt-get update 更新软件源中的所有软件列表，类似手机应用市场检查更新。
+apt-get upgrade 升级软件，类似手机应用市场检查更新之后的全部升级。
+apt-get dist-upgrade 除了执行升级之外，还可以智能地处理新版本的依赖关系（attempt to upgrade the most important packages at the expense of less important ones if necessary）。
+apt-get install -f
+
+apt-get install vim wget -y
+
+docker commit -a "runoob.com" -m "my apache" a404c6c174a2  mymysql:v1 

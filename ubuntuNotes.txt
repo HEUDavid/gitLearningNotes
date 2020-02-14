@@ -1,4 +1,5 @@
 Ubuntu操作笔记
+
 apt-get install g++ freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libglu1-mesa libglu1-mesa-dev git vim python3-distutils
 
 Win10关闭快速启动 安全模式
@@ -41,6 +42,10 @@ sudo apt install fcitx
 点击语言支持修改成fcitx
 安装搜狗输入法
 重启 Ctrl + ，切换成搜狗
+安装Windows字体
+复制过去
+apt install libcanberra-gtk-module
+sudo unzip wps_symbol_fonts.zip -d /usr/share/fonts/wps-office
 
 安装shadowsocks
 直接点击运行
