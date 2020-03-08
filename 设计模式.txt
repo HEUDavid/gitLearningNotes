@@ -1,0 +1,85 @@
+设计模式
+我没有经验,要去学习设计模式,却担心设计模式成为限制我的框架.
+
+根据设计模式的参考书 Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素） 中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：创建型模式（Creational Patterns）、结构型模式（Structural Patterns）、行为型模式（Behavioral Patterns）。
+
+创建型模式
+这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。
+
+工厂模式（Factory Pattern）
+抽象工厂模式（Abstract Factory Pattern）
+单例模式（Singleton Pattern）
+建造者模式（Builder Pattern）
+原型模式（Prototype Pattern）
+
+
+结构型模式
+这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。
+
+适配器模式（Adapter Pattern）
+桥接模式（Bridge Pattern）
+过滤器模式（Filter、Criteria Pattern）
+组合模式（Composite Pattern）
+装饰器模式（Decorator Pattern）
+外观模式（Facade Pattern）
+享元模式（Flyweight Pattern）
+代理模式（Proxy Pattern）
+
+
+
+行为型模式
+这些设计模式特别关注对象之间的通信。
+
+责任链模式（Chain of Responsibility Pattern）
+命令模式（Command Pattern）
+解释器模式（Interpreter Pattern）
+迭代器模式（Iterator Pattern）
+中介者模式（Mediator Pattern）
+备忘录模式（Memento Pattern）
+观察者模式（Observer Pattern）
+状态模式（State Pattern）
+空对象模式（Null Object Pattern）
+策略模式（Strategy Pattern）
+模板模式（Template Pattern）
+访问者模式（Visitor Pattern）
+
+
+
+J2EE 模式
+这些设计模式特别关注表示层。这些模式是由 Sun Java Center 鉴定的。
+
+MVC 模式（MVC Pattern）
+业务代表模式（Business Delegate Pattern）
+组合实体模式（Composite Entity Pattern）
+数据访问对象模式（Data Access Object Pattern）
+前端控制器模式（Front Controller Pattern）
+拦截过滤器模式（Intercepting Filter Pattern）
+服务定位器模式（Service Locator Pattern）
+传输对象模式（Transfer Object Pattern）
+
+
+
+工厂模式
+工厂模式（Factory Pattern）是 Java 中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+
+在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。
+
+# 工厂模式使其创建过程延迟到子类进行。
+
+抽象工厂模式
+抽象工厂模式（Abstract Factory Pattern）是围绕一个超级工厂创建其他工厂。该超级工厂又称为其他工厂的工厂。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+
+在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定它们的类。每个生成的工厂都能按照工厂模式提供对象。
+
+# 工厂的工厂 多套一层
+
+
+
+单例模式
+单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+
+这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。
+# 单例类只能有一个实例。 单例类必须自己创建自己的唯一实例。
+
+
+
