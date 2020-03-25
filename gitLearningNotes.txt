@@ -10,6 +10,9 @@ Git学习笔记
 219.76.4.4 s3.amazonaws.com
 219.76.4.4 github-cloud.s3.amazonaws.com
 
+git fetch --all
+git reset --hard origin/master
+git pull
 
 /etc/init.d/networking restart
 Git干货，常用
@@ -69,6 +72,7 @@ Git干货，常用
             git config --global user.name "David"
             git config --global user.email "david@hrbeu.edu.cn"
             git config --global core.editor vim
+            git config --global core.autocrlf false
         和GitHub连接：
         ssh-keygen -t rsa -b 4096 -C "david@hrbeu.edu.cn"
         将生成的公钥配置到Github账户中
