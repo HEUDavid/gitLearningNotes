@@ -1,0 +1,26 @@
+Protocol Buffers学习笔记
+
+syntax = "proto3";
+message SearchRequest {
+  string query = 1;
+  int32 page_number = 2;
+  int32 result_per_page = 3;
+}
+
+
+同一个message的每个字段都有唯一一个编号，并且建议终生这个编号都不要改变。
+
+字段是以[ "repeated" ] type fieldName "=" fieldNumber [ "[" fieldOptions "]" ] ";"格式定义的
+
+
+option可以用在proto的scope中，或者message、enum、service的定义中。
+
+有时候你不得不修改正在使用的proto文件，比如为类型增加一个字段，protobuf支持这种修改而不影响已有的服务，不过你需要遵循一定的规则：
+
+当你增加一个新的字段的时候，老系统序列化后的数据依然可以被你的新的格式所解析，只不过你需要处理新加字段的缺省值。 老系统也能解析你信息的值，新加字段只不过被丢弃了
+## 老系统 如果收到新系统的消息 新增字段被丢弃
+## 新系统 如果收到老系统的消息
+
+
+字段也可以被移除，但是建议你Reserved这个字段，避免将来会使用这个字段
+Reserved可以用来指明此message不使用某些字段，也就是忽略这些字段。
