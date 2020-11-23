@@ -1,0 +1,10 @@
+makefile规则:
+
+<target> : <prerequisites> 
+[tab]  <commands>
+
+比如：
+objects = main.o kbd.o command.o display.o insert.o search.o files.o utils.o
+
+edit : $(objects)
+    cc -o edit $(objects)
