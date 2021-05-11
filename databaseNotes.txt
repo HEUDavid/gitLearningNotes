@@ -191,15 +191,27 @@ F 属性间数据的依赖关系的集合
 
 
 
+避免慢查询：
+    1、不应该对索引字段加函数处理，这会导致索引失效。
+    使用函数会导致索引失效
+        查询时隐式类型转换也相当于函数会导致索引失效，且会让字段转换成整形，产生截断，导致查询结果不对。
+    2、对字符串字段做条件查询，一定要注意比较值也为字符串，否则会导致隐式类型转换，从而导致索引失效。
+
+    正确使用索引
 
 
+长事务问题：
+    原则：SQL查询后，一定要主动结束事务，commit、rollback，或者是将连接close。
 
 
+3. 批量insert, update问题
+如果你在python中，使用sqlalchemy ORM，有批量插入、更新数据的场景。使用sqlalchemy的批量插入、更新的方法：
 
+bulk_insert_mappings：批量插入 bulk_update_mappings：批量更新
 
+而不是使用add、add_all的方式，两者效率相差巨大。
 
-
-
+原则：使用bulk_insert_mappings、bulk_update_mappings批量插入、更新数据
 
 
 
